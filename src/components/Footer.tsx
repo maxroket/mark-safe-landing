@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Услуги", href: "#services" },
@@ -19,13 +20,8 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="/" className="mb-4 flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
-                <span className="text-lg font-bold text-accent-foreground">M</span>
-              </div>
-              <span className="text-xl font-bold">
-                Mark <span className="text-accent">Safe</span>
-              </span>
+            <a href="/" className="mb-4 inline-block">
+              <img src={logo} alt="Mark Safe" className="h-12 w-auto" />
             </a>
             <p className="mb-6 text-sm text-muted-foreground">
               Сервис маркировки товаров Честный Знак под ключ. 
