@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
@@ -46,10 +47,18 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Useful */}
           <div>
-            <h4 className="mb-4 font-semibold">Документы</h4>
+            <h4 className="mb-4 font-semibold">Полезное</h4>
             <ul className="space-y-2">
+              <li>
+                <Link
+                  to="/blog"
+                  className="text-sm text-muted-foreground transition-colors hover:text-accent"
+                >
+                  Блог
+                </Link>
+              </li>
               {legalLinks.map((link) => (
                 <li key={link.label}>
                   <a
@@ -62,6 +71,7 @@ export function Footer() {
               ))}
             </ul>
           </div>
+
 
           {/* Contacts */}
           <div>
