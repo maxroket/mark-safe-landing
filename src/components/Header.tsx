@@ -2,14 +2,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const navLinks = [
-  { label: "Услуги", href: "#services" },
-  { label: "Категории", href: "#categories" },
-  { label: "Калькулятор", href: "#quiz" },
-  { label: "Отзывы", href: "#reviews" },
-  { label: "Контакты", href: "#footer" },
+  { label: "Услуги", href: "#services", external: true },
+  { label: "Категории", href: "#categories", external: true },
+  { label: "Калькулятор", href: "#quiz", external: true },
+  { label: "Отзывы", href: "#reviews", external: true },
+  { label: "Блог", href: "/blog", external: false },
+  { label: "Контакты", href: "#footer", external: true },
 ];
 
 export function Header() {
@@ -25,15 +27,25 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-6 lg:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Desktop Actions */}
@@ -61,16 +73,27 @@ export function Header() {
           <SheetContent side="right" className="w-full max-w-xs">
             <div className="flex flex-col gap-6 pt-6">
               <nav className="flex flex-col gap-4">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-medium text-foreground transition-colors hover:text-primary"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {navLinks.map((link) =>
+                  link.external ? (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="text-lg font-medium text-foreground transition-colors hover:text-primary"
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                )}
               </nav>
               <div className="flex flex-col gap-3 border-t border-border pt-6">
                 <a
